@@ -171,7 +171,7 @@
             <div>
               <label for="search-status" class="field-label">النوع</label>
               <select id="search-status" name="status" class="field-input">
-                <option value="">الكل</option>
+                <option value="">الكل (بيع وإيجار)</option>
                 <option value="for_sale">للبيع</option>
                 <option value="for_rent">للإيجار</option>
               </select>
@@ -180,11 +180,11 @@
               <label for="search-type" class="field-label">نوع العقار</label>
               <select id="search-type" name="property_type" class="field-input">
                 <option value="">جميع الأنواع</option>
-                <option value="apartment">شقة سكنية</option>
-                <option value="villa">فيلا فاخرة</option>
-                <option value="land">أرض سكنية / تجارية</option>
-                <option value="commercial_shop">عقار تجاري</option>
-                <option value="building">عمارة استثمارية</option>
+                <option value="Apartment">شقة سكنية</option>
+                <option value="Villa">فيلا فاخرة</option>
+                <option value="Land">أرض سكنية / تجارية</option>
+                <option value="Commercial">عقار تجاري</option>
+                <option value="Building">عمارة استثمارية</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary w-full sm:w-auto">
@@ -202,31 +202,31 @@
         <h2 id="property-types-title" class="text-2xl font-bold text-[var(--color-brand-navy-900)]">تصفح حسب نوع العقار</h2>
         <ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           <li>
-            <a href="https://app.novixa-aqar.example/properties?property_type=apartment" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
+            <a href="https://app.novixa-aqar.example/properties?property_type=Apartment" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12" stroke="#2563EB" stroke-width="1.8"/><path d="M9 21v-6h6v6" stroke="#2563EB" stroke-width="1.8"/></svg>
               <span class="text-sm font-semibold text-[var(--color-text-primary)]">شقق سكنية</span>
             </a>
           </li>
           <li>
-            <a href="https://app.novixa-aqar.example/properties?property_type=villa" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
+            <a href="https://app.novixa-aqar.example/properties?property_type=Villa" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12 12 4l9 8" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/><path d="M5 10v10h14V10" stroke="#2563EB" stroke-width="1.8"/></svg>
               <span class="text-sm font-semibold text-[var(--color-text-primary)]">فلل</span>
             </a>
           </li>
           <li>
-            <a href="https://app.novixa-aqar.example/properties?property_type=land" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
+            <a href="https://app.novixa-aqar.example/properties?property_type=Land" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 20h18M4 20 10 8l4 5 3-4 3 11" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg>
               <span class="text-sm font-semibold text-[var(--color-text-primary)]">أراضٍ</span>
             </a>
           </li>
           <li>
-            <a href="https://app.novixa-aqar.example/properties?property_type=commercial_shop" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
+            <a href="https://app.novixa-aqar.example/properties?property_type=Commercial" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9h18v11H3z" stroke="#2563EB" stroke-width="1.8"/><path d="M3 9l2-5h14l2 5" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg>
               <span class="text-sm font-semibold text-[var(--color-text-primary)]">عقارات تجارية</span>
             </a>
           </li>
           <li>
-            <a href="https://app.novixa-aqar.example/properties?property_type=building" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
+            <a href="https://app.novixa-aqar.example/properties?property_type=Building" class="card flex flex-col items-center gap-2 p-5 text-center hover:border-[var(--color-brand-blue-600)] hover:shadow-[var(--shadow-elevated)] transition-shadow">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="1" stroke="#2563EB" stroke-width="1.8"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/></svg>
               <span class="text-sm font-semibold text-[var(--color-text-primary)]">عمائر استثمارية</span>
             </a>
