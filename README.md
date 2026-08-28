@@ -1,5 +1,7 @@
 # Novixa Aqar — Landing Page
 
+**Live: https://aqar-landing-page.vercel.app** ([العربية](https://aqar-landing-page.vercel.app/ar) · [English](https://aqar-landing-page.vercel.app/en)) — auto-deploys from `main` via Vercel's GitHub integration.
+
 The public marketing/SEO landing experience for **Novixa Aqar**, a bilingual (Arabic-first RTL / English LTR) real-estate discovery platform for Yemen.
 
 This is a small, fast, standalone static site — **not** a copy of the main Laravel application. It exists to give Aqar a crawlable, sub-second-loading front door, and it hands every dynamic action (search, listings, submitting a property, news, auth) off to the real application. See [`docs/PLANNING.md`](docs/PLANNING.md) for the reasoning behind that split.
@@ -12,7 +14,7 @@ Built against [`AQAR_LANDING_PAGE_MASTER_SPEC.md`](AQAR_LANDING_PAGE_MASTER_SPEC
 - [`docs/CONTENT_MODEL.md`](docs/CONTENT_MODEL.md) — every section on the page, what's real vs. deferred, and where each fact came from
 - [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) — tokens, typography, components, and where the brand values were verified against the real app
 - [`docs/QA_REPORT.md`](docs/QA_REPORT.md) — the final QA pass (responsive, RTL/LTR, accessibility, SEO, performance)
-- [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — what to change before this goes on a real domain
+- [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — current deployment status and the one remaining placeholder (the app's own domain)
 
 ## Stack
 

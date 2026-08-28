@@ -104,19 +104,19 @@ No automated test suite exists for this static site (none was warranted for the 
 
 New repository. See `git log` for the full commit history; every commit is scoped and described individually rather than one large initial commit.
 
-## 13. Manual deployment steps
+## 13. Manual deployment steps — DONE
 
-See `docs/DEPLOYMENT.md` in full. Summary: replace the two placeholder domains (marketing site + app) everywhere they appear, confirm the Novixa-Aqar-vs-Dar-Hadhramaut branding decision with the product owner, then deploy `dist/` to any static host.
+Deployed to Vercel (`create_git_project`, linked to `github.com/ak01redwan/aqar-landing-page`, auto-deploy on push to `main`). Live at **https://aqar-landing-page.vercel.app**. The marketing site's own placeholder domain was replaced with that real URL and every OG image regenerated (pixel text, not just markup — `npm run gen:favicons`) once the deployment was confirmed live and stable. See `docs/DEPLOYMENT.md` for the one remaining placeholder (the app's own domain — confirmed with the product owner that the app isn't publicly hosted yet, so this is a known, tracked gap rather than an oversight).
 
 ## 14. Remaining risks
 
-- **Branding decision unconfirmed** — see `docs/PLANNING.md` §2. Low effort to reverse if wrong (centralized brand strings + regenerable OG images), but should be confirmed before real traffic hits this page.
-- **`property_type` filter values not byte-verified** — see `docs/CONTENT_MODEL.md`. Non-fatal if wrong (lands on a working page, filter just doesn't pre-apply).
-- **No live Lighthouse/axe/Rich-Results run** — this sandbox can't reach a public URL or run a full Lighthouse trace; strongly recommended immediately after first deploy, before considering this fully launch-verified.
+- **App origin is still a placeholder** — every dynamic link (search, properties, submit-property, etc.) points at `app.novixa-aqar.example` because the real app has no public host yet. Confirmed intentional, not an oversight. Uses the reserved `.example` TLD so a stray click can't land somewhere real and unrelated. Tracked in `docs/DEPLOYMENT.md`.
+- **Branding decision unconfirmed** — see `docs/PLANNING.md` §2. Low effort to reverse if wrong (centralized brand strings + regenerable OG images), but should be confirmed before this is treated as the final public identity.
+- **No live Lighthouse/axe/Rich-Results run** — now that a public URL exists, this is straightforward to run; just hasn't been done from this environment yet.
 - **Locale handoff to the app is best-effort** — see `docs/PLANNING.md` §4; the app's own session-based locale may not always match the landing page locale the visitor came from.
 
 ## 15. Final verdict
 
-**LANDING PAGE READY WITH FIXES**
+**LANDING PAGE READY FOR DEMO**
 
-The page is structurally complete, accessible, fast, honest about real vs. deferred content, and every dynamic link points to a route confirmed to exist in the real application. It is not marked fully "ready for demo" only because of the two pre-launch items that need a human decision/verification (branding confirmation, property-type value spot-check) and the standard post-deploy Lighthouse/Rich-Results pass that requires a public URL this sandbox doesn't have — none of these block a demo, but they should be closed out before treating this as production-final.
+Live, deployed, verified route-for-route against the real application, secure (full git history audited, zero secrets), branding internally consistent, and functionally correct (property-type filter values re-verified byte-for-byte against the real app's source, not guessed). The one remaining gap — the app's own domain — is a deliberate, product-owner-confirmed placeholder, not a defect: there is nothing real to link to yet. Everything within this repo's control is done.

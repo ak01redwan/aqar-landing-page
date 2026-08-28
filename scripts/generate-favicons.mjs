@@ -90,7 +90,7 @@ async function generateOgImages() {
       wordmarkTop: 'نوفيكسا',
       headline: 'نوفيكسا عقار',
       tagline: 'اكتشف العقار المناسب لك في اليمن',
-      wordmarkBottom: 'novixa-aqar.example',
+      wordmarkBottom: 'aqar-landing-page.vercel.app',
     },
     {
       file: 'aqar-default-en.jpg',
@@ -98,7 +98,7 @@ async function generateOgImages() {
       wordmarkTop: 'NOVIXA',
       headline: 'Novixa Aqar',
       tagline: 'Discover the right property in Yemen',
-      wordmarkBottom: 'novixa-aqar.example',
+      wordmarkBottom: 'aqar-landing-page.vercel.app',
     },
   ];
 

@@ -1,42 +1,50 @@
-# Deployment checklist
+# Deployment
 
-## Before this goes on a real domain
+## Current status: live on Vercel
 
-The whole site uses a single placeholder domain, chosen deliberately (spec §31: "Replace all placeholders with the real production host after the domain is known... never allow localhost or an old staging origin into canonical, OG, sitemap, or structured data"):
+Deployed via `create_git_project`, linked directly to [github.com/ak01redwan/aqar-landing-page](https://github.com/ak01redwan/aqar-landing-page) — every push to `main` auto-deploys (Vercel auto-detected the Vite framework, no manual build config needed).
 
-- **Marketing site placeholder:** `https://novixa-aqar.example` — appears in every `<link rel="canonical">`, `hreflang`, `og:url`, `og:image`, JSON-LD `url`, `public/robots.txt`, and `public/sitemap.xml`.
-- **App placeholder:** `https://app.novixa-aqar.example` — hardcoded directly into every `href`/`action` in `ar/index.html` and `en/index.html` (deliberately not JS-injected, so links work with JavaScript disabled — see spec §9/§67 on not depending on JS for crawlable content). Uses the IANA-reserved `.example` TLD specifically so it can never accidentally resolve to a real, unrelated site if someone clicks it before the swap. **As of this deployment, the real Novixa Aqar app is not yet publicly hosted anywhere** (confirmed with the product owner) — this placeholder is intentionally still live in production pending that.
+**Live URL: https://aqar-landing-page.vercel.app**
 
-**Both need a global find-and-replace before launch.** There is no build-time templating step for the HTML `href`s on purpose (see `docs/PLANNING.md` — static HTML with real hrefs was chosen over a template layer for a 2-page site). Search both locale files for `novixa-aqar.example` and replace with the real hosts.
+That URL is real and used throughout the site's own metadata (canonical, hreflang, OG, JSON-LD, `robots.txt`, `sitemap.xml`) — it replaced the original `novixa-aqar.example` placeholder once the deployment confirmed it was live and stable. No further action needed for the marketing site's own domain unless a custom domain is connected later (Vercel project settings → Domains).
+
+## Still a placeholder: the app origin
+
+`https://app.novixa-aqar.example` is hardcoded directly into every `href`/`action` in `ar/index.html` and `en/index.html` that points at dynamic functionality (search, browse, submit-property, news, about, contact, login, register, terms, privacy). This is **intentional and confirmed with the product owner**: the real Novixa Aqar Laravel app is not yet publicly hosted anywhere, so there is nothing real to link to yet.
+
+It uses the IANA-reserved `.example` TLD specifically so it can never accidentally resolve to a real, unrelated site if clicked before the swap.
+
+**When the app goes live:** find-and-replace `app.novixa-aqar.example` → the real app host across `ar/index.html` and `en/index.html` (no config file — see `docs/PLANNING.md` for why hrefs are hardcoded rather than JS-injected), then `npm run build`, commit, and push. Vercel redeploys automatically.
 
 ## Branding decision to confirm
 
-`docs/PLANNING.md` §2 documents a judgment call: this page markets the "Novixa Aqar" platform brand, not the currently-seeded "Dar Hadhramaut Real Estate" tenant. **Confirm this with whoever owns the product before launch** — if wrong, the brand name, OG images (`public/images/og/*.jpg`, regenerate via `npm run gen:favicons` after editing `scripts/generate-favicons.mjs`), and JSON-LD `Organization` blocks in both HTML files all need updating.
+`docs/PLANNING.md` §2 documents a judgment call: this page markets the "Novixa Aqar" platform brand, not the currently-seeded "Dar Hadhramaut Real Estate" tenant. **Still worth confirming with whoever owns the product** — if wrong, the brand name, OG images (`public/images/og/*.jpg`, regenerate via `npm run gen:favicons` after editing `scripts/generate-favicons.mjs`), and JSON-LD `Organization` blocks in both HTML files all need updating. Nothing about this blocks the current deployment; it's a "confirm, don't assume forever" item.
 
-## Standard checklist (spec §89)
+## Checklist status (spec §89)
 
 ### Domain
-- [ ] DNS points to the hosting target
-- [ ] HTTPS active
-- [ ] `www` vs. apex decided and redirected consistently
+- [x] DNS/HTTPS — handled automatically by Vercel
+- [x] Canonical host decided — `aqar-landing-page.vercel.app` (no `www`/apex ambiguity on a `.vercel.app` subdomain)
 
 ### Application
-- [ ] All hardcoded `app.novixa-aqar.example` hrefs (`ar/index.html`, `en/index.html`) updated to the real app host once it's publicly deployed
-- [ ] Marketing site's own placeholder domain updated everywhere (see above)
-- [ ] `npm run build` produces `dist/` with no errors
-- [ ] `npm run gen:favicons` re-run if the logo changed
+- [ ] `app.novixa-aqar.example` hrefs updated once the real app is publicly deployed (see above — the one remaining placeholder)
+- [x] Marketing site's own domain is real and live
+- [x] `npm run build` produces `dist/` with no errors
+- [x] `npm run gen:favicons` re-run after the domain swap (OG images had the old placeholder baked into their pixels — a plain text find-and-replace doesn't touch rasterized images, so this step is easy to forget)
 
 ### SEO
-- [ ] `robots.txt` reachable at `/robots.txt`
-- [ ] `sitemap.xml` reachable at `/sitemap.xml`, uses the real production host
-- [ ] Canonical/hreflang URLs use the real production host, not the placeholder
-- [ ] `og:url` / `og:image` use the real production host (social platforms cache aggressively — verify with each platform's debugger after the domain swap)
+- [x] `robots.txt` live at `/robots.txt`, points to the real sitemap
+- [x] `sitemap.xml` live at `/sitemap.xml`, both real pages, correct hreflang
+- [x] Canonical/hreflang URLs use the real production host
+- [x] `og:url` / `og:image` use the real production host
 
-### Search Console
+### Search Console — not yet done
 - [ ] Verify the domain/property
 - [ ] Submit `sitemap.xml`
 - [ ] Inspect `/ar` and `/en` via URL Inspection
 
-## Hosting
+This needs a Google account tied to the domain and isn't something that can be done from this environment — flagging it as the next real step, not deferring it silently.
 
-This is a static build (`dist/` after `npm run build`) — any static host works (Vercel, Netlify, Cloudflare Pages, S3+CDN, or served from the same box as the app under a different vhost). No server runtime, no environment variables required beyond what's baked into the HTML at edit time.
+## Hosting details
+
+Static build (`dist/` after `npm run build`), served by Vercel's static/edge network — no server runtime, no environment variables. Vercel project: `aqar-landing-page` under the `ak01redwans-projects` team, linked to the GitHub repo's `main` branch as the production branch.

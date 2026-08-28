@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://novixa-aqar.example/sitemap.xml
+Sitemap: https://aqar-landing-page.vercel.app/sitemap.xml
