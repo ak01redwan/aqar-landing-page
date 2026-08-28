@@ -14,6 +14,7 @@ Built against [`AQAR_LANDING_PAGE_MASTER_SPEC.md`](AQAR_LANDING_PAGE_MASTER_SPEC
 - [`docs/CONTENT_MODEL.md`](docs/CONTENT_MODEL.md) — every section on the page, what's real vs. deferred, and where each fact came from
 - [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) — tokens, typography, components, and where the brand values were verified against the real app
 - [`docs/QA_REPORT.md`](docs/QA_REPORT.md) — the final QA pass (responsive, RTL/LTR, accessibility, SEO, performance)
+- [`docs/SOCIAL_MEDIA_CONTENT_PLAYBOOK.md`](docs/SOCIAL_MEDIA_CONTENT_PLAYBOOK.md) — content ideas and ready-to-use prompts for posts, images, video, and ads across the landing page, Aqar, and Novixa
 - [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — current deployment status and the one remaining placeholder (the app's own domain)
 
 ## Stack
