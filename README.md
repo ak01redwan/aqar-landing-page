@@ -45,7 +45,6 @@ en/index.html         English homepage
 index.html            Language chooser + redirect (noindex)
 src/styles/main.css   Design tokens (@theme) + component classes
 src/js/main.js        Mobile nav drawer + header elevation (progressive enhancement only)
-src/js/site-config.js Real app origin + route map (see docs/CONTENT_MODEL.md for provenance)
 public/               robots.txt, sitemap.xml, favicons, OG images, manifest
 scripts/               Favicon/OG image generator
 docs/                  Planning, content model, design system, QA, deployment docs

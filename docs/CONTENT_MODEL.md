@@ -4,7 +4,7 @@ Every real product claim, route, and label used on the page, with where it came 
 
 ## Routes linked from this site
 
-All under `APP_ORIGIN` (`src/js/site-config.js`), taken directly from `routes/web.php` in the real app:
+All under the app's origin (hardcoded directly into every `href`/`action` in `ar/index.html` and `en/index.html` — see `docs/DEPLOYMENT.md` for why there's no config-file layer), taken directly from `routes/web.php` in the real app:
 
 | Landing page use | Real route | Route name |
 |---|---|---|
@@ -63,7 +63,7 @@ Per spec §86 Phase B, anything without real backing data is deferred rather tha
 
 ## Integration point for live data (not yet wired)
 
-`src/js/site-config.js` exports `FEATURED_PROPERTIES_ENDPOINT`, currently `null`. If the app ships a public JSON endpoint for featured properties (e.g. `GET /api/public/properties/featured`), that's the wire-up point for turning the editorial "Featured Properties" section into a real card grid without restructuring the page. Same idea would apply to a `/api/public/news/latest` endpoint for the News section.
+If the app ever ships a public JSON endpoint for featured properties (e.g. `GET /api/public/properties/featured`) or recent articles (e.g. `GET /api/public/news/latest`), that's the natural point to turn the editorial "Featured Properties" and "News" sections into real card grids without restructuring the page. No such endpoint exists today, so this is a documented future option, not wired-up code.
 
 ## Contact information
 

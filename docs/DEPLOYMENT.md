@@ -5,7 +5,7 @@
 The whole site uses a single placeholder domain, chosen deliberately (spec §31: "Replace all placeholders with the real production host after the domain is known... never allow localhost or an old staging origin into canonical, OG, sitemap, or structured data"):
 
 - **Marketing site placeholder:** `https://novixa-aqar.example` — appears in every `<link rel="canonical">`, `hreflang`, `og:url`, `og:image`, JSON-LD `url`, `public/robots.txt`, and `public/sitemap.xml`.
-- **App placeholder:** `https://app.novixa-aqar.example` — appears in `src/js/site-config.js` (`APP_ORIGIN`) and is duplicated directly into every `href`/`action` in `ar/index.html` and `en/index.html` (deliberately not JS-injected, so links work with JavaScript disabled — see spec §9/§67 on not depending on JS for crawlable content).
+- **App placeholder:** `https://app.novixa-aqar.example` — hardcoded directly into every `href`/`action` in `ar/index.html` and `en/index.html` (deliberately not JS-injected, so links work with JavaScript disabled — see spec §9/§67 on not depending on JS for crawlable content). Uses the IANA-reserved `.example` TLD specifically so it can never accidentally resolve to a real, unrelated site if someone clicks it before the swap. **As of this deployment, the real Novixa Aqar app is not yet publicly hosted anywhere** (confirmed with the product owner) — this placeholder is intentionally still live in production pending that.
 
 **Both need a global find-and-replace before launch.** There is no build-time templating step for the HTML `href`s on purpose (see `docs/PLANNING.md` — static HTML with real hrefs was chosen over a template layer for a 2-page site). Search both locale files for `novixa-aqar.example` and replace with the real hosts.
 
@@ -21,7 +21,7 @@ The whole site uses a single placeholder domain, chosen deliberately (spec §31:
 - [ ] `www` vs. apex decided and redirected consistently
 
 ### Application
-- [ ] `APP_ORIGIN` in `site-config.js` and all hardcoded `app.novixa-aqar.example` hrefs updated to the real app host
+- [ ] All hardcoded `app.novixa-aqar.example` hrefs (`ar/index.html`, `en/index.html`) updated to the real app host once it's publicly deployed
 - [ ] Marketing site's own placeholder domain updated everywhere (see above)
 - [ ] `npm run build` produces `dist/` with no errors
 - [ ] `npm run gen:favicons` re-run if the logo changed

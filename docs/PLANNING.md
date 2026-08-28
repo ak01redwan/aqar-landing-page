@@ -10,7 +10,7 @@ The real app (`aqar-project/aqar/`) already **has** a working public site — ho
 
 Given that, and given this repo lives in its own directory with its own git history, a small static site (Vite + Tailwind, no framework, no server runtime) is the right tool: it satisfies the spec's own performance section (§44–47: near-zero JS, no unnecessary framework weight) better than shoehorning Blade into a repo that has no Laravel app behind it, and it avoids the alternative of copying large parts of the real app into a public repo.
 
-**Every dynamic action hands off to the real app** via `src/js/site-config.js` (`APP_ORIGIN` + real route paths). Nothing here talks to a database or fakes one.
+**Every dynamic action hands off to the real app** — every `href`/`action` in `ar/index.html` and `en/index.html` points at a real, verified route on the app's origin (see `docs/CONTENT_MODEL.md`). Nothing here talks to a database or fakes one. As of this deployment the app itself isn't publicly hosted yet, so that origin is still the documented placeholder in `docs/DEPLOYMENT.md` — a known, tracked gap, not an oversight.
 
 ## 2. The branding call: "Novixa Aqar" vs. "Dar Hadhramaut Real Estate"
 
@@ -44,7 +44,7 @@ The spec is explicit and repeated (§2.7, §11, §56): no fake listings, no fake
 - **Featured properties** is an editorial section (real copy, real "browse all" CTA to the app) — not a card grid with invented properties.
 - **News** is a one-line teaser + CTA to the app's real `/news` — not fabricated article previews.
 
-If/when the app exposes a public JSON endpoint for featured properties or recent articles, `FEATURED_PROPERTIES_ENDPOINT` in `src/js/site-config.js` is the integration point — currently `null` (deferred), documented in `docs/CONTENT_MODEL.md`.
+If/when the app exposes a public JSON endpoint for featured properties or recent articles, that's the integration point for turning these into real card grids — see `docs/CONTENT_MODEL.md` for the details. No such endpoint exists today.
 
 ## 6. Deferred sections
 
