@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Novixa Aqar">
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <path d="M32 12 L52 28 V50 H38 V38 H26 V50 H12 V28 Z" fill="#3B82F6"/>
+  <path d="M32 12 L52 28 H44 L32 18.5 L20 28 H12 Z" fill="#10B981"/>
+</svg>
