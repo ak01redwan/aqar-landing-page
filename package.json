@@ -1,0 +1,20 @@
+{
+  "name": "aqar-landing-page",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public marketing landing experience for Novixa Aqar — bilingual (Arabic-first RTL / English LTR) real-estate discovery site.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "gen:favicons": "node scripts/generate-favicons.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "png-to-ico": "^3.0.2",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.1.14",
+    "vite": "^7.1.12"
+  }
+}
