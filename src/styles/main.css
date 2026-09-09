@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (spec §23/§46: "self-host fonts where licensing permits",
+   "only preload truly critical resources") — only the 4 weights actually
+   used, each a combined woff2 covering the Arabic + Latin ranges it needs.
+   Replaces the earlier Google Fonts <link> (one less third-party origin,
+   one less render-blocking cross-origin request per page). */
+@import "@fontsource/cairo/500.css";
+@import "@fontsource/cairo/600.css";
+@import "@fontsource/cairo/700.css";
+@import "@fontsource/cairo/800.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/outfit/800.css";
+
 /* ==========================================================================
    Novixa Aqar — Design tokens
    Source of truth: brand direction confirmed against the live application
@@ -31,7 +45,11 @@
      usage isn't authoritative for the brand. See docs/PROFESSIONAL_REVIEW_2026-09.md. */
   --color-brand-accent-400: #2dd4bf;
   --color-brand-accent-500: #14b8a6;
-  --color-brand-accent-600: #0d9488;
+  /* Deliberately darker than Tailwind's stock teal-600 (#0d9488, which only
+     hits 3.74:1 on white — fails WCAG AA's 4.5:1 for normal text). Used only
+     as text color (.section-eyebrow on light backgrounds), never as a
+     background, so darkening it here has no other effect. Verified 5.47:1. */
+  --color-brand-accent-600: #0f766e;
 
   --color-brand-amber-500: #f59e0b;
   --color-brand-amber-600: #d97706;

@@ -57,6 +57,8 @@ Verified via `resize_window` (375×812 mobile) plus DOM inspection at desktop wi
   - White text on brand blue `#2563EB` button: **5.17:1** (passes AA for normal text, ≥4.5:1 required)
   - Secondary text `#475569` on white: **7.59:1** (passes AAA, ≥7:1)
   - White text on navy `#0F172A`: >15:1 (passes AAA)
+  - Teal-400 accent `#2DD4BF` on navy (hero eyebrow, "how it works" numbers): **9.59:1** (passes AAA)
+  - **Regression caught and fixed** (`docs/PROFESSIONAL_REVIEW_2026-09.md`): the darker accent shade used for `.section-eyebrow` text on white backgrounds was originally `#0D9488` (stock teal-600) at only 3.74:1 — failing AA. This was actually a latent bug from the very first build (the original emerald-600 measured 3.77:1, same failure, just never checked at the time). Darkened to `#0F766E`, now 5.47:1, passes AA.
 - `prefers-reduced-motion: reduce` collapses all transitions/animations
 - No automated axe/Lighthouse accessibility audit was run in this session (no such tool available here) — the above were checked directly; a Lighthouse/axe pass is still recommended before launch
 
@@ -84,8 +86,8 @@ Verified via `resize_window` (375×812 mobile) plus DOM inspection at desktop wi
 
 ## 9. Performance QA
 
-- Production build output: **23.9 KB CSS / 2.1 KB JS (gzipped: 5.4 KB / 0.9 KB)** — from `npm run build` output, not estimated
-- Zero render-blocking third-party scripts; only Google Fonts (preconnected) as an external dependency
+- Production build output: **34 KB CSS / 2.1 KB JS (gzipped: 6.65 KB / 0.9 KB)** — from `npm run build` output, not estimated. CSS grew from the original 23.9KB after self-hosting fonts (`docs/PROFESSIONAL_REVIEW_2026-09.md`) — the `@font-face` declarations that used to live on Google's servers now live in this file — but that trade removed two external DNS/connection hops and a cross-origin render-blocking request per page load, a net win for real-world LCP even though the local artifact is nominally bigger.
+- Zero render-blocking third-party requests of any kind — fonts are now self-hosted (`@fontsource/cairo`, `@fontsource/outfit`), served from the same origin as everything else
 - Hero visual is inline SVG (zero network requests, zero layout shift risk) instead of a raster hero image
 - No JS framework; the only JS is progressive-enhancement (mobile drawer, header elevation) — page content and search form work with JavaScript disabled
 - No formal Lighthouse/PageSpeed/WebPageTest run in this session (needs a public URL or a full browser automation pass not available in this sandbox) — recommended immediately post-deploy per `docs/DEPLOYMENT.md`; given the near-zero JS/CSS payload and static-HTML delivery, Core Web Vitals targets (LCP ≤2.5s, INP ≤200ms, CLS ≤0.1) are expected to be comfortably achievable but not yet measured
@@ -93,7 +95,7 @@ Verified via `resize_window` (375×812 mobile) plus DOM inspection at desktop wi
 ## 10. Browser console/network QA
 
 - Verified in a live preview (`vite dev` + browser automation): zero console errors, zero failed network requests on both `/ar/` and `/en/` (checked via `read_console_messages` and `read_network_requests`)
-- All linked assets (CSS, JS, logo SVG, Google Fonts) resolved with 200/304 status
+- All linked assets (CSS, JS, logo SVG, self-hosted font files) resolved with 200/304 status
 - Mobile drawer open/close state transitions verified via direct DOM inspection (see §5)
 
 ## 11. Test results

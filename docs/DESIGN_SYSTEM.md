@@ -21,6 +21,8 @@ The master spec (§3) proposed primary blue `#2563EB`, navy `#0F172A`, and accen
 
 The Aqar app's own emerald usage is left untouched — fixing that app's drift from the brand system is a decision for whoever owns that codebase, not this landing page.
 
+**One deliberate departure from the raw brand value:** `--color-brand-accent-600`, used only as text color for `.section-eyebrow` on light backgrounds, is `#0F766E` rather than Tailwind's stock teal-600 (`#0D9488`). Checked by calculation: stock teal-600 on white is only 3.74:1, which fails WCAG AA's 4.5:1 minimum for normal-size text — a latent bug present since the very first build (the original emerald-600 had the same problem, 3.77:1, just never caught). `#0F766E` measures 5.47:1 and passes. This token is never used as a background, so darkening it has no other visual effect.
+
 ## Typography
 
 Matches the real app's font system (`resources/css/app.css`, `layouts/app.blade.php`) rather than the spec's unspecific guidance:
@@ -28,7 +30,7 @@ Matches the real app's font system (`resources/css/app.css`, `layouts/app.blade.
 - **Arabic (`[dir="rtl"] body`)**: Cairo, falling back to Tajawal — both are the real app's actual Arabic font choices.
 - **Latin (`body` default)**: Outfit — loaded by the real app's public layout alongside Cairo/Tajawal.
 
-Loaded via Google Fonts `<link>` with `rel="preconnect"` and only the weights actually used (500/600/700/800), matching spec §23's "don't load unused weights" and §46's caution against over-preloading.
+Self-hosted via `@fontsource/cairo` and `@fontsource/outfit` (`src/styles/main.css`, `@import`), only the 4 weights actually used (500/600/700/800) — matching spec §23's "self-host fonts where licensing permits" and "don't load unused weights." This replaced an earlier Google Fonts `<link>` approach: self-hosting removes two external DNS/connection hops and one cross-origin render-blocking request per page, at the cost of a few extra KB directly in the built CSS (measured: 24.7KB → 34KB unminified CSS, still 6.65KB gzipped).
 
 ## Spacing, radius, shadow
 
