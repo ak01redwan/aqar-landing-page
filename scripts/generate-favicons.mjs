@@ -16,7 +16,7 @@ const logoPath = resolve(root, 'public/images/logo.svg');
 
 const NAVY = '#0F172A';
 const BLUE = '#2563EB';
-const ACCENT = '#10B981';
+const ACCENT = '#14B8A6';
 
 async function ensureDir(path) {
   await mkdir(path, { recursive: true });

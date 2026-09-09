@@ -71,7 +71,7 @@ Verified via `resize_window` (375×812 mobile) plus DOM inspection at desktop wi
 
 ## 7. Structured data QA
 
-- `Organization` JSON-LD: `name`, `alternateName` (AR only), `url`, `logo`, `sameAs` (novixa.dev, confirmed real) — no invented fields (no fabricated address/phone/rating)
+- `Organization` JSON-LD: `name`, `alternateName` (AR only), `url`, `logo`, `sameAs` (`novixa-cyan.vercel.app`, the live Novixa company site — updated from `novixa.dev` after that domain was found not to resolve, see `docs/PROFESSIONAL_REVIEW_2026-09.md`) — no invented fields (no fabricated address/phone/rating)
 - `WebSite` JSON-LD: `name`, `url`, `inLanguage` — no `SearchAction` included (deliberately; see `docs/CONTENT_MODEL.md`, the exact search URL contract wasn't confirmed with enough certainty to publish as structured data)
 - JSON strings are hand-verified valid JSON (both blocks); not run through Google's Rich Results Test in this session (requires a public URL) — recommended post-deploy per `docs/DEPLOYMENT.md`
 

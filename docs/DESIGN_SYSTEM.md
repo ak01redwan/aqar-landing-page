@@ -2,18 +2,24 @@
 
 Tokens live as CSS custom properties in `src/styles/main.css` (`@theme` block, Tailwind v4's CSS-first config — no `tailwind.config.js`, matching how the real app configures Tailwind 4). This doc is the provenance/reasoning layer on top of that file.
 
-## Color — verified against the real app, not guessed from the spec
+## Color — brand docs + live company site win over one app's ad hoc CSS
 
-The master spec (§3) proposed primary blue `#2563EB`, navy `#0F172A`, and accent teal `#14B8A6`. Auditing the real app's CSS and logo SVG confirmed two of three and corrected one:
+The master spec (§3) proposed primary blue `#2563EB`, navy `#0F172A`, and accent teal `#14B8A6`. Two rounds of verification landed in two different places, and it's worth recording why the second round overrides the first:
+
+**Round 1** (initial build): audited the real Aqar Laravel app's CSS and logo SVG. Found blue and navy exactly as specified, but found emerald (`#10B981`) where the spec predicted teal — the app's logo roof and its "for rent" badge (`#059669`) both used emerald, and `#14B8A6` appeared nowhere in that codebase. Concluded the spec's teal was a documentation error and switched this repo to emerald.
+
+**Round 2** (`docs/PROFESSIONAL_REVIEW_2026-09.md`, after the product owner supplied Novixa's official brand/company documents): three independent institutional documents (`AQAR_LANDING_PAGE_MASTER_SPEC.md`, `NOVIXA_COMPANY_CONTEXT.md`, `NOVIXA_MASTER_REFERENCE_BOOK_v1.0.md`) all specify `#14B8A6` as the accent — and critically, the actual **live Novixa company site** (`novixa-cyan.vercel.app`) empirically uses it: its "Zero-Lock" stat badge computes to `oklch(0.777 0.152 181.912)`, a ~182° hue that's unambiguously teal, not emerald (~150-160° hue).
+
+**Resolution: teal wins.** The Aqar app has no formal design-token system — its own `CLAUDE.md` says colors are "used ad hoc as raw Tailwind utility classes," not sourced from an approved palette. One sub-product's incidental CSS is weaker evidence of the brand than three official documents plus the company's own flagship site measured directly. Current tokens:
 
 | Token | Value | Verified against |
 |---|---|---|
-| `--color-brand-blue-600` (primary) | `#2563EB` | `resources/css/app.css` `.badge-sale`, pervasive `blue-600` utility usage, `theme-color` meta tag |
-| `--color-brand-navy-900` | `#0F172A` | Logo SVG background rect |
-| `--color-brand-accent-500` (accent) | `#10B981` | Logo SVG roof mark; close to the app's "for rent" badge `#059669` (`--color-brand-accent-600`) |
-| `--color-brand-amber-500` | `#F59E0B` | App's "Featured" badge gradient |
+| `--color-brand-blue-600` (primary) | `#2563EB` | Aqar app CSS, Novixa brand docs, live Novixa site |
+| `--color-brand-navy-900` | `#0F172A` | Aqar app logo SVG, Novixa brand docs |
+| `--color-brand-accent-500` (accent) | `#14B8A6` (teal) | Novixa brand docs (×3) + live Novixa company site, empirically measured |
+| `--color-brand-amber-500` | `#F59E0B` | Aqar app's "Featured" badge gradient (unrelated to this correction) |
 
-**The spec's teal (`#14B8A6`) does not appear anywhere in the real codebase and was not used here.** This is the single largest correction from spec-as-written to spec-as-verified; see `docs/CONTENT_MODEL.md` for the full reasoning.
+The Aqar app's own emerald usage is left untouched — fixing that app's drift from the brand system is a decision for whoever owns that codebase, not this landing page.
 
 ## Typography
 

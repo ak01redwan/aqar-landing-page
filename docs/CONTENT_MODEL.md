@@ -71,8 +71,8 @@ The app's `GeneralSettings` has real contact details on file — but those are s
 
 ## Logo / brand mark
 
-`public/images/logo.svg` is byte-for-byte the real app's `public/images/logo.svg` — same company, same asset, reused intentionally (not recreated) so the mark is identical everywhere it appears.
+`public/images/logo.svg` started as a byte-for-byte copy of the real Aqar app's `public/images/logo.svg`. One pixel value has since diverged: the roof mark's fill was changed from the app's emerald (`#10B981`) to teal (`#14B8A6`) to match the corrected brand accent below. Navy background and blue body remain identical to the app's original.
 
-## Colors — one correction from the master spec
+## Colors — corrected twice; see docs/DESIGN_SYSTEM.md for the full story
 
-The spec (§3) claims an accent teal `#14B8A6`. That color does not appear anywhere in the real app. The actual accent, confirmed in the logo SVG and the "for rent" badge CSS (`resources/css/app.css`), is **emerald** (`#10B981` / `#059669`). This build uses the verified emerald value; see `docs/DESIGN_SYSTEM.md`.
+The spec (§3) claims an accent teal `#14B8A6`. An early pass here found emerald (`#10B981`/`#059669`) in the real Aqar app's CSS instead and switched to emerald. A later review (`docs/PROFESSIONAL_REVIEW_2026-09.md`), after the product owner supplied Novixa's official brand documents and the live Novixa company site was checked directly, found teal is in fact the correct, current brand accent — the Aqar app's emerald usage is drift from an ad hoc, non-tokenized stylesheet, not the brand system itself. This build now uses teal `#14B8A6`. See `docs/DESIGN_SYSTEM.md` for the full evidence trail.

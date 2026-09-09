@@ -23,12 +23,15 @@
   --color-brand-navy-700: #1e293b;
   --color-brand-navy-900: #0f172a;
 
-  /* Accent: emerald, matching the real product logo (roof mark, #10B981) and
-     the app's "for rent" badge (#059669) — the master spec's "teal" guess
-     does not appear anywhere in the live codebase; see docs/DESIGN_SYSTEM.md. */
-  --color-brand-accent-400: #34d399;
-  --color-brand-accent-500: #10b981;
-  --color-brand-accent-600: #059669;
+  /* Accent: teal, per Novixa's official brand documents (three independent
+     sources all specify #14B8A6) and empirically confirmed on the live
+     Novixa company site (measured accent hue ~182°, teal territory). An
+     earlier pass here switched this to emerald based on the Aqar app's own
+     ad hoc CSS — that app has no formal design-token system, so its color
+     usage isn't authoritative for the brand. See docs/PROFESSIONAL_REVIEW_2026-09.md. */
+  --color-brand-accent-400: #2dd4bf;
+  --color-brand-accent-500: #14b8a6;
+  --color-brand-accent-600: #0d9488;
 
   --color-brand-amber-500: #f59e0b;
   --color-brand-amber-600: #d97706;
