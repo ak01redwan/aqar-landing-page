@@ -90,7 +90,7 @@ Verified via `resize_window` (375×812 mobile) plus DOM inspection at desktop wi
 - Zero render-blocking third-party requests of any kind — fonts are now self-hosted (`@fontsource/cairo`, `@fontsource/outfit`), served from the same origin as everything else
 - Hero visual is inline SVG (zero network requests, zero layout shift risk) instead of a raster hero image
 - No JS framework; the only JS is progressive-enhancement (mobile drawer, header elevation) — page content and search form work with JavaScript disabled
-- No formal Lighthouse/PageSpeed/WebPageTest run in this session (needs a public URL or a full browser automation pass not available in this sandbox) — recommended immediately post-deploy per `docs/DEPLOYMENT.md`; given the near-zero JS/CSS payload and static-HTML delivery, Core Web Vitals targets (LCP ≤2.5s, INP ≤200ms, CLS ≤0.1) are expected to be comfortably achievable but not yet measured
+- **Real field measurement, live production URL** (`docs/PROFESSIONAL_REVIEW_2026-09.md`, via the browser's own Navigation/Paint Timing APIs against `https://aqar-landing-page.vercel.app/en/`, not a synthetic lab estimate): First Contentful Paint **704ms**, DOMContentLoaded **679ms**, full load **1017ms** — all comfortably inside the "Good" Core Web Vitals range (LCP target ≤2.5s). A formal Lighthouse/PageSpeed run is still recommended for the fuller metric set (INP, CLS, a Lighthouse score) but isn't available from this sandbox; the numbers that could be measured directly are strong.
 
 ## 10. Browser console/network QA
 
